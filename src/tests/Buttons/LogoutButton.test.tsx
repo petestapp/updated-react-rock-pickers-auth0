@@ -21,4 +21,16 @@ describe("LogoutButton", () => {
         // assert
         expect(logout).toHaveBeenCalled();
     })
+
+    it("does not call logout when the button is not clicked", () => {
+        // arrange
+        const logout = jest.fn();
+        (useAuth0 as jest.Mock).mockReturnValueOnce( { logout } );
+
+        // act
+        render(<LogoutButton />);
+
+        // assert
+        expect(logout).not.toHaveBeenCalled();
+    })
 })
