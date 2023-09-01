@@ -6,7 +6,7 @@ import { LogoutButton } from "../../components/Buttons/LogoutButton";
 jest.mock("@auth0/auth0-react");
 
 describe("LogoutButton", () => {
-    it("calls logout when the button is clicked", () => {
+    it("calls logout with logoutParams when the button is clicked", () => {
         // arrange
         const logout = jest.fn();
         (useAuth0 as jest.Mock).mockReturnValueOnce( { logout } );
@@ -19,7 +19,13 @@ describe("LogoutButton", () => {
         fireEvent.click(button);
 
         // assert
-        expect(logout).toHaveBeenCalled();
+        expect(logout).toHaveBeenCalledWith({
+            logoutParams: {
+                logoutParams: {
+                    returnTo: "http://localhost:3000/"
+                }
+            }
+        });
     })
 
     it("does not call logout when the button is not clicked", () => {
