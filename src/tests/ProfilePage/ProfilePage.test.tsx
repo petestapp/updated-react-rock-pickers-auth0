@@ -30,7 +30,7 @@ describe("ProfilePage", () => {
         const userEmail = screen.queryByText("test@example.com");
         const userPicture = screen.queryByAltText("user icon consisting of first two letters of name");
 
-        // expect
+        // assert
         expect(profileHeading).toBeInTheDocument();
         expect(userEmail).toBeInTheDocument();
         expect(userPicture).toHaveAttribute("src", "user-picture-url");
