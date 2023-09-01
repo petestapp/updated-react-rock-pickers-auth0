@@ -25,4 +25,16 @@ describe("SignUpButton", () => {
             }
         })
     })
+
+    it("does not call loginWithRedirect when the button is not clicked", () => {
+        // arrange
+        const loginWithRedirect = jest.fn();
+        (useAuth0 as jest.Mock).mockReturnValueOnce( { loginWithRedirect } );
+
+        // act
+        render(<SignUpButton />);
+
+        // assert
+        expect(loginWithRedirect).not.toHaveBeenCalled();
+    })
 })
