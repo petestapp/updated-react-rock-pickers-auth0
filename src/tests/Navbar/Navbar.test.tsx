@@ -20,4 +20,17 @@ describe("Navbar", () => {
         expect(signUpButton).toBeInTheDocument();
         expect(loginButton).toBeInTheDocument();
     })
+
+    it("renders logOut button when authenticated", () => {
+        // arrange
+        (useAuth0 as jest.Mock).mockReturnValueOnce( { isAuthenticated: true } );
+
+        // act
+        render(<Navbar />);
+
+        const logOutButton = screen.getByText("Log out");
+
+        // assert
+        expect(logOutButton).toBeInTheDocument();
+    })
 })
