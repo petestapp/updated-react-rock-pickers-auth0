@@ -71,4 +71,26 @@ describe("RockCounter", () => {
         // assert
         expect(screen.getByText("Rocks Picked: 0")).toBeInTheDocument();
     })
+
+    it("displays Done when the count goes above 10", () => {
+        // arrange
+        render(<RockCounter />);
+
+        const increaseButton = screen.getByText("Increase");
+
+        // act
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+
+        // assert
+        expect(screen.getByText("Done")).toBeInTheDocument();
+    })
 })
