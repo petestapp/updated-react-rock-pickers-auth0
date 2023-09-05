@@ -40,7 +40,7 @@ describe("RockCounter", () => {
         const increaseButton = screen.getByText("Increase");
         const decreaseButton = screen.getByText("Decrease");
 
-        // need to figure out a way to get the count up from zero better;
+        // need to figure out a way to get the count up from zero better here and in the reset test;
         fireEvent.click(increaseButton);
         fireEvent.click(increaseButton);
         fireEvent.click(increaseButton);
@@ -51,5 +51,24 @@ describe("RockCounter", () => {
 
         // assert
         expect(screen.getByText("Rocks Picked: 2")).toBeInTheDocument();
+    })
+
+    it("resets the count when the reset button is clicked", () => {
+        // arrange
+        render(<RockCounter />);
+
+        const increaseButton = screen.getByText("Increase");
+        const resetButton = screen.getByText("Reset");
+
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+        expect(screen.getByText("Rocks Picked: 3")).toBeInTheDocument();
+
+        // act
+        fireEvent.click(resetButton);
+
+        // assert
+        expect(screen.getByText("Rocks Picked: 0")).toBeInTheDocument();
     })
 })
