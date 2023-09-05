@@ -94,7 +94,32 @@ describe("RockCounter", () => {
         expect(screen.getByText("Done")).toBeInTheDocument();
     })
 
-    // count can not go under 0
+    it("displays Not Done after count goes below 10 after going above 10 test created", () => {
+        // arrange
+        render(<RockCounter />);
+
+        const increaseButton = screen.getByText("Increase");
+        const decreaseButton = screen.getByText("Decrease");
+
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+        expect(screen.getByText("Done")).toBeInTheDocument();
+
+        // act
+        fireEvent.click(decreaseButton);
+
+        // assert
+        expect(screen.getByText("Not Done")).toBeInTheDocument();
+    })
+
     it("count can not go below 0", () => {
         // arrange
         render(<RockCounter />);
@@ -109,6 +134,4 @@ describe("RockCounter", () => {
         // assert
         expect(screen.getByText("Rocks Picked: 0")).toBeInTheDocument();
     })
-
-    // goes back to not done after number goes below 9 again
 })
