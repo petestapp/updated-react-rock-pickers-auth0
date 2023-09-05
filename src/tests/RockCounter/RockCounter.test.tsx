@@ -93,4 +93,22 @@ describe("RockCounter", () => {
         // assert
         expect(screen.getByText("Done")).toBeInTheDocument();
     })
+
+    // count can not go under 0
+    it("count can not go below 0", () => {
+        // arrange
+        render(<RockCounter />);
+
+        const decreaseButton = screen.getByText("Decrease");
+
+        expect(screen.getByText("Rocks Picked: 0")).toBeInTheDocument();
+
+        // act
+        fireEvent.click(decreaseButton);
+
+        // assert
+        expect(screen.getByText("Rocks Picked: 0")).toBeInTheDocument();
+    })
+
+    // goes back to not done after number goes below 9 again
 })
