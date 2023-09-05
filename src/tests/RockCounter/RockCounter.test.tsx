@@ -32,4 +32,24 @@ describe("RockCounter", () => {
         expect(screen.getByText("Rocks Picked: 1")).toBeInTheDocument();
         expect(screen.getByText("Not Done")).toBeInTheDocument();
     })
+
+    it("decreases the count when the decrease button is clicked", () => {
+        // arrange
+        render(<RockCounter />);
+
+        const increaseButton = screen.getByText("Increase");
+        const decreaseButton = screen.getByText("Decrease");
+
+        // need to figure out a way to get the count up from zero better;
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+        fireEvent.click(increaseButton);
+        expect(screen.getByText("Rocks Picked: 3")).toBeInTheDocument();
+
+        // act
+        fireEvent.click(decreaseButton);
+
+        // assert
+        expect(screen.getByText("Rocks Picked: 2")).toBeInTheDocument();
+    })
 })
