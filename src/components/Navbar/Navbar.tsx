@@ -7,8 +7,6 @@ import {LogoutButton} from "../Buttons/LogoutButton";
 export const Navbar: React.FC = () => {
     const { isAuthenticated } = useAuth0();
 
-    const isAuthenticatedBoolean: boolean = false;
-
     return (
         <div>
             {!isAuthenticated ? (
