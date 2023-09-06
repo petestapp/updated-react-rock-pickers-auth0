@@ -1,9 +1,9 @@
 import React from 'react';
-import logo from '../../logo.svg';
 import './App.css';
 import { Navbar } from "../Navbar/Navbar";
 import { ProfilePage } from "../ProfilePage/ProfilePage";
 import { RockCounter } from "../RockCounter/RockCounter";
+import { RockList } from "../RockList/RockList";
 
 function App() {
     return (
@@ -13,6 +13,7 @@ function App() {
                 <h1>React Rock Pickers</h1>
             </header>
             <ProfilePage/>
+            <RockList />
             <h2>Luke</h2>
             <RockCounter />
             <h2>JJ</h2>
